@@ -5,7 +5,7 @@
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
- 
+
 (setq package-enable-at-startup nil)
 
 (package-initialize)
@@ -14,17 +14,23 @@
 (scroll-bar-mode -1)
 (electric-indent-mode -1)
 (setq inhibit-splash-screen t)
+;Fix orgmode package HTTPS error
 (setq dotspacemacs-elpa-https nil)
 
+;Enable row number
 (global-linum-mode t)
 
+;Setup the F2 key to open init.el file
 (defun open-my-init-file()
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
 (global-set-key (kbd "<f2>") 'open-my-init-file)
 
+;Open company mode
 (global-company-mode t)
+
+(setq make-backup-files nil)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
