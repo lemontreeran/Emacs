@@ -56,7 +56,7 @@
 (popwin-mode 1)
 
 ;show match parents
-(require 'smartparens-config)
+;;(require 'smartparens-config)
 ;;(add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
 (smartparens-global-mode t)
 (show-smartparens-global-mode t)
@@ -67,6 +67,8 @@
 ;Open company mode
 (global-company-mode t)
 
+;Fix orgmode package HTTPS error
+(setq dotspacemacs-elpa-https nil)
 ;Setup the C-x C-r key to open recent files
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
