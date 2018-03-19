@@ -10,6 +10,10 @@
 (global-set-key (kbd "C-h C-f") 'find-function)
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-oqn-key)
+;;Setup org-agenda keywords
+(global-set-key (kbd "C-c a") 'org-agenda)
+;;use `counsel-git` to find file in git managed project.
+(global-set-key (kbd "C-c p f") 'counsel-git)
 
 ;Enable to open recent files
 (require 'recentf)
