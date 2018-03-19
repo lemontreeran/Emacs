@@ -15,9 +15,11 @@
 (require 'init-ui)
 (require 'init-better-defaults)
 (require 'init-keybindings)
+(require 'init-org)
 
-;Add delete selection mode
-(delete-selection-mode t)
+;;Setup customize-group config
+(setq custom-file (expand-file-name "lisp/custom.el" user-emacs-directory))
+(load custom-file 'no-error 'no-message)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

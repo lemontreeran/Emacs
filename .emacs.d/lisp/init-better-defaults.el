@@ -18,4 +18,7 @@
                                             ;; emacs regex
                                             ))
 
+;Add delete selection mode
+(delete-selection-mode t)
+
 (provide 'init-better-defaults)
