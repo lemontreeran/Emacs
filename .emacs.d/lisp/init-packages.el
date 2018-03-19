@@ -22,6 +22,8 @@
                 counsel
                 smartparens
 		popwin
+		;; --- the finder of the current file ---
+		reveal-in-osx-finder
                 ;; --- Major Mode ---
                 js2-mode
                 ;; --- Minor Mode ---
@@ -60,6 +62,7 @@
 ;;(add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
 (smartparens-global-mode t)
 (show-smartparens-global-mode t)
+(sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil)
 
 ;Delete multiple spaces 
 (require 'hungry-delete)
