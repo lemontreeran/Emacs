@@ -57,11 +57,7 @@
 (require 'popwin)
 (popwin-mode 1)
 
-;show match parents
-;;(require 'smartparens-config)
-;;(add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
-(smartparens-global-mode t)
-(show-smartparens-global-mode t)
+;; Do not pair ' 
 (sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil)
 
 ;Delete multiple spaces 

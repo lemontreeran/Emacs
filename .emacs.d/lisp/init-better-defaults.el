@@ -18,6 +18,18 @@
                                             ;; emacs regex
                                             ))
 
+;; show match parents
+(define-advice show-paren-function (:around (fn) fix-show-paren-function)
+  "Highlight enclosing parens."
+  (cond ((looking-at-p "\\s(") (funcall fn))
+        (t (save-excursion
+             (ignore-errors (backward-up-list))
+             (funcall fn)))))
+;; (require 'smartparens-config)
+;; (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
+(smartparens-global-mode t)
+(show-smartparens-global-mode t)
+
 ;Add delete selection mode
 (delete-selection-mode t)
 
@@ -63,5 +75,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; open dired of current buffer
 (require 'dired-x)
+;Enable to open recent files
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-item 10)
 
 (provide 'init-better-defaults)

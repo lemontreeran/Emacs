@@ -22,9 +22,4 @@
 (with-eval-after-load 'dired)
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
 
-;Enable to open recent files
-(require 'recentf)
-(recentf-mode 1)
-(setq recentf-max-menu-item 10)
-
 (provide 'init-keybindings)
