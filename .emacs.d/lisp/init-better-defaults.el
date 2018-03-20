@@ -18,17 +18,25 @@
                                             ;; emacs regex
                                             ))
 
-;; show match parents
+;; Highlight parens when inside it
 (define-advice show-paren-function (:around (fn) fix-show-paren-function)
   "Highlight enclosing parens."
   (cond ((looking-at-p "\\s(") (funcall fn))
         (t (save-excursion
-             (ignore-errors (backward-up-list))
+            (ignore-errors (backward-up-list))
              (funcall fn)))))
+
 ;; (require 'smartparens-config)
 ;; (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
 (smartparens-global-mode t)
 (show-smartparens-global-mode t)
+
+(require 'highlight-parentheses)  
+(define-globalized-minor-mode global-highlight-parentheses-mode  
+  highlight-parentheses-mode  
+  (lambda ()  
+    (highlight-parentheses-mode t)))  
+(global-highlight-parentheses-mode t) 
 
 ;Add delete selection mode
 (delete-selection-mode t)
@@ -74,6 +82,7 @@
 ;; less typing when Emacs ask you yes or no
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; open dired of current buffer
+
 (require 'dired-x)
 ;Enable to open recent files
 (require 'recentf)

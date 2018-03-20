@@ -21,6 +21,7 @@
                 swiper
                 counsel
                 smartparens
+		highlight-parentheses
 		popwin
 		;; --- the finder of the current file ---
 		reveal-in-osx-finder
@@ -57,8 +58,10 @@
 (require 'popwin)
 (popwin-mode 1)
 
-;; Do not pair ' 
+;; Do not pair '
+(require 'smartparens)
 (sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil)
+;;(sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
 
 ;Delete multiple spaces 
 (require 'hungry-delete)
