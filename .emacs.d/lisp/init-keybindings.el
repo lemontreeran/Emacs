@@ -21,5 +21,31 @@
 ;;Setup key to reuse current buffer
 (with-eval-after-load 'dired)
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
+;; Setup key for expand-region
+(global-set-key (kbd "C-=") 'er/expand-region)
+;;setup key for iedit
+(global-set-key (kbd "M-s e") 'iedit-mode)
+;;improve occur
+(global-set-key (kbd "M-s o") 'occur-dwim)
 
+;;remap Company's select next and select previous keys
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
+
+;;;; Web Development  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;setup key to toggle indent in web-mode
+(global-set-key (kbd "C-c t i") 'my-toggle-web-indent)
+;;setup key to improve imenu
+(add-hook 'js2-mode-hook
+              (lambda ()
+                (setq imenu-create-index-function 'js2-imenu-make-index)))
+(global-set-key (kbd "M-s i") 'counsel-imenu)
+;;config for js2-refactor
+(add-hook 'js2-mode-hook #'js2-refactor-mode)
+(js2r-add-keybindings-with-prefix "C-c C-m")
+
+;; Setup key for iedit
 (provide 'init-keybindings)

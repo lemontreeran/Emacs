@@ -69,7 +69,7 @@
                                          try-complete-lisp-symbol))
 
 ;; + create Dir; c-x c-f create file; g refresh buffer; C copy; d delete file;  
-;; D delete; x execute; 
+;; D delete; R move; x execute; 
 ;; dired - reuse current buffer by pressing 'a'
 (put 'dired-find-alternate-file 'disabled nil)
 ;; always delete and copy recursively
@@ -88,5 +88,34 @@
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-item 10)
+
+;;improve occur
+(defun occur-dwim ()
+  "Call `occur' with a sane default."
+  (interactive)
+  (push (if (region-active-p)
+            (buffer-substring-no-properties
+             (region-beginning)
+             (region-end))
+          (let ((sym (thing-at-point 'symbol)))
+            (when (stringp sym)
+              (regexp-quote sym))))
+        regexp-history)
+  (call-interactively 'occur))
+
+
+;;;; Web Development  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Editing large web page
+(defun remove-dos-eol ()
+  "Replace DOS eolns CR LF with Unix eolns CR"
+  (interactive)
+  (goto-char (point-min))
+  (while (search-forward "\r" nil t) (replace-match "")))
+
+(defun hidden-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []));;toggle indent in web-mode
 
 (provide 'init-better-defaults)
