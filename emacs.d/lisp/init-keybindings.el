@@ -42,6 +42,9 @@
 ;;Setup key for helm-ag
 (global-set-key (kbd "C-c p s") 'helm-do-ag-project-root)
 
+;;Setup key for backward delete one word
+(global-set-key (kbd "C-w") 'backward-kill-word)
+
 ;;;; Web Development  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;setup key to toggle indent in web-mode
 (global-set-key (kbd "C-c t i") 'my-toggle-web-indent)

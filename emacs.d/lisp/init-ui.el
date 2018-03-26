@@ -5,6 +5,16 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+;;Setup the background and forground color for Highlight, region
+(set-face-foreground 'highlight "white")
+(set-face-background 'highlight "blue")
+(set-face-foreground 'region "cyan")
+(set-face-background 'region "blue")
+(set-face-foreground 'secondary-selection "skyblue")
+(set-face-background 'secondary-selection "darkblue")
+(set-foreground-color "grey")
+(set-background-color "black")
+
 ;Cancel welcome page
 (setq inhibit-splash-screen t)
 ;;Open with full screen

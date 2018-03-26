@@ -16,25 +16,37 @@
  (defvar my/packages '(
                 ;; --- Auto-completion ---
                 company
-                ;; --- Better Editor ---
+		yasnippet-snippets
+		auto-yasnippet
+		;; --- Better Editor ---
                 hungry-delete
                 swiper
                 counsel
                 smartparens
 		highlight-parentheses
 		popwin
+		evil
 		;; --- the finder of the current file ---
 		reveal-in-osx-finder
-                ;; --- Major Mode ---
-                js2-mode
-		js2-refactor
+		;; --- Batch change files ---
 		expand-region
 		iedit
-		org-pomodoro
+		;; --- Search and replace ---
 		helm-ag
+		;; --- Agenda ---
+		org-pomodoro
+                ;; --- Major Mode ---
+		;; --- JS highlight and Linter ---
+                js2-mode
+		;; --- JS refactor ---
+		js2-refactor
                 ;; --- Minor Mode ---
+		;; --- Excute and test ---
                 nodejs-repl
                 exec-path-from-shell
+		reveal-in-osx-finder
+		;; --- Find the syntax error for JS, Python(Dynamic Programming Language). It needs eslint in NPM ---
+		flycheck
                 ;; --- Themes ---
                 monokai-theme
                 ;; solarized-theme
@@ -51,7 +63,8 @@
        (when (not (package-installed-p pkg))
          (package-install pkg))))
 
- ;; Find Executable Path on OS X
+;; Find Executable Path on OS X
+;; this hopefully sets up path and other vars better
  (when (memq window-system '(mac ns))
    (exec-path-from-shell-initialize))
 
@@ -110,6 +123,34 @@
       (setq css-indent-offset (if (= css-indent-offset 2) 4 2)))
   (setq indent-tabs-mode nil))
 
+;; use local eslint from node_modules before global
+;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
+(defun my/use-eslint-from-node-modules ()
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (eslint (and root
+                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                        root))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint))))
+(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+
+(require 'flycheck)
+
+;;Open flycheck for js2-mode only
+(add-hook 'js2-mode-hook 'flycheck-mode)
+
+;; disable jshint since we prefer eslint checking
+(setq-default flycheck-disabled-checkers
+  (append flycheck-disabled-checkers
+    '(javascript-jshint)))
+
+;; disable json-jsonlist checking for json files
+(setq-default flycheck-disabled-checkers
+  (append flycheck-disabled-checkers
+    '(json-jsonlist)))
+
 ;;improve imenu
 (defun js2-imenu-make-index ()
       (interactive)
@@ -126,6 +167,11 @@
                                    ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*()[ \t]*{" 1)
                                    ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*:[ \t]*function[ \t]*(" 1)
                                    ("Task" "[. \t]task([ \t]*['\"]\\([^'\"]+\\)" 1)))))
+
+;;Use yas-minor-mode on a per-buffer basis
+(require 'yasnippet)
+(yas-reload-all)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
 
 (require 'org-pomodoro)
 
