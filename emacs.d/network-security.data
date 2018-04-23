@@ -1,3 +1,4 @@
 (
+ (:id "sha1:7069e85d6f0a077711a5ff7a558e31f5e58c249a" :fingerprint "sha1:4f:f5:41:c1:1a:04:8a:dd:02:11:14:74:e8:63:4b:0c:fb:49:e9:99" :host "elpa.popkit.org:443" :conditions (:insecure :unknown-ca :invalid))
  (:id "sha1:24c7a1e6369fef1e50de1deb1a9e5bbc68f80c8b" :fingerprint "sha1:26:26:88:6a:58:94:85:2f:98:ce:97:a0:0d:93:75:63:0a:9e:44:b5" :host "orgmode.org:443" :conditions (:insecure :unknown-ca :invalid))
 )

@@ -9,6 +9,7 @@
                           ("melpa" . "http://melpa.milkbox.net/packages/")))
 )
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+(add-to-list 'package-archives '("popkit" . "https://elpa.popkit.org/packages/"))
 ;(setq package-enable-at-startup nil)
 
 
@@ -25,7 +26,13 @@
                 smartparens
 		highlight-parentheses
 		popwin
+		which-key
+		mwe-log-commands
+		;; --- Evil Mode ---
 		evil
+		evil-leader
+		evil-nerd-commenter
+		evil-surround
 		;; --- the finder of the current file ---
 		reveal-in-osx-finder
 		;; --- Batch change files ---
@@ -174,5 +181,22 @@
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 
 (require 'org-pomodoro)
+
+;;;; Evil Mode  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-evil-leader-mode)
+(evil-mode 1)
+(require 'evil-surround)
+(global-evil-surround-mode)
+(evilnc-default-hotkeys)
+
+;;Setup Window Numbering
+(window-numbering-mode 1)
+
+;;Setup Powerline
+;;(require 'powerline)
+;;(powerline-default-theme)
+
+;;Setup Which-key
+(which-key-mode 1)
 
 (provide 'init-packages)

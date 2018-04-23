@@ -1,0 +1,140 @@
+** Automation
+- 
+
+** Operation Model
+*** Delivery Config
+
+*** Content Model and Access Control
+**** Account
+**** Group
+**** Property(Property Manager)
+***** Cloud Security Failover
+***** Kona DDoS Defender
+***** Kona Site Defender
+****** Contract Property(ex. "sj1337-ksd.nab v1"):
+Access Control
+Custom Behaviors
+Fast Activate (Beta)
+HTTP/2
+Site Failover
+SiteShield
+Variable Support
+****** Property Configuration Settings
+Caching
+DNS & Retry Optimizations
+Access control rules
+Security headers
+POST whitelisting
+Site Failover to serve a sorry page from NetStorage
+
+- Subnet
+Property Hostname	Edge Hostname	IP Version
+nab39080404.ksd.akamaiusec.com nab39080404.ksd.akamaiusec.com.edgesuite.net	IPv4 Only
+
+Origin Server Hostname
+ksd.akamaiu.com
+
+CP Code(Billing)
+59073 - KSD-Course
+
+- Siteshield 
+Dynamic IP / Firewall change
+
+********************************* Automation avaiable Above
+developer.akamai.com
+
+*** Security Configuration (Multiple OUs)
+**** Bot Manager
+**** Kona DDos Defender
+**** Site Defender(Access Control Group)
+***** Selected Hosts
+***** Rate Policies
+- Shared Resources
+ACCOUNT LEVEL
+ Network Lists
+CONFIGURATION LEVEL
+ Custom Rules
+VERSION LEVEL
+ Rate Policies
+ Reputation Profiles
+ Response Actions
+ Customer-Categorized Bots
+ Mobile Application Definitions
+***** Firewall Policies
+***** Match Targets - Websites
+***** Match Targets - APIs
+
+*** Reporting & Monitoring
+**** Security Monitor(Log collection + aggregation = Delay, 72hours data)
+- IP Filter
+- Raw data drill down
+**** Security Center(Every Week, 90days data)
+**** WAF Rate Controls(Accmulated in 5 minutes)
+**** WAF Activity Report
+**** Application Security Activity
+**** WAF Tuning Report
+**** Security Monkey VS ?
+
+** Network
+- DNS 
+edgekey.net
+https://blog.kloud.com.au/2017/05/01/akamai-cloud-based-dns-black-magic/
+- UDP attack
+- TCP flood
+
+Nework Layer Control:
+Block IP / Subnet / GEO
+
+** WAS (WAF API is available for automation)
+- OWASP
+- DDos
+- HTTP
+- SlowLoris
+
+Remember:
+- Existing WAF policies are NEVER updated automatically.
+- An opt-in model is available when you create a new version of an existing policy.
+
+** API
+*** Parser(Automation via XML)
+*** API Definitions
+*** Separate Match Targets
+
+** Client Rep
+- Web Attackers
+- Scanning tools
+- Dos Attackers
+- Web Scrapers
+
+** Note
+*** Rate Controls(No automation to change the threshold)
+- 5 WAF in total. Every BU has WAF
+- limit 10 Rate controls per. Create seperate control for 404. 
+- Each edge server his its own rate control
+*** CSI(Big Data Platmform)
+*** No GEO rules, No top domain mapping rules in build
+*** No central place to check all exclusions
+
+** Tools
+*** MxToolbox
+https://mxtoolbox.com/SuperTool.aspx?action=http%3a%2f%2fwww.akamai.com+&run=toolpage#
+*** Akamai debug headers
+- X-Akamai-Staging: EdgeSuite
+*** Whois databases
+*** Edgescapes or any IP analysis tool
+- whatismyip
+- www.whois.com(Mac command: Whois)
+- securityheaders
+*** Client
+*** Prgama Headers
+http://nab39080404.ksd.akamaiusec.com/wp-content/uploads/2017/06/stock-illustration-cyber-robot-mascot-de-2151515.png
+akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key,akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key,akamai-x-get-request-id
+*** www.hurl.it
+
+** Practises
+*** Create Account
+*** Defense operations
+- Blocking
+- Failover
+- Exclusion
+*** Compliance

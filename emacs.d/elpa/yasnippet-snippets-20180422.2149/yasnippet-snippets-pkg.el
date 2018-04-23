@@ -1,0 +1,1 @@
+(define-package "yasnippet-snippets" "20180422.2149" "Collection of yasnippet snippets"  '((yasnippet "0.8.0") ) :url "https://github.com/AndreaCrotti/yasnippet-snippets" :keywords '("convenience" "snippets" ))

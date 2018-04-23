@@ -1,0 +1,1 @@
+(define-package "iedit" "20180207.1819" "Edit multiple regions in the same way simultaneously."  'nil  :url "https://github.com/victorhge/iedit" :keywords '("occurrence region simultaneous refactoring" ))

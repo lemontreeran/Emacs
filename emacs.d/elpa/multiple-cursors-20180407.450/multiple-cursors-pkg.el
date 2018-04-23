@@ -1,0 +1,1 @@
+(define-package "multiple-cursors" "20180407.450"   "Multiple cursors for Emacs."   '((cl-lib "0.5")))

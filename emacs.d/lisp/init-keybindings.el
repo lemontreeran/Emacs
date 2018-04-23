@@ -13,7 +13,7 @@
 ;;Setup org-agenda keywords
 (global-set-key (kbd "C-c a") 'org-agenda)
 ;;use `counsel-git` to find file in git managed project.
-(global-set-key (kbd "C-c p f") 'counsel-git)
+;;(global-set-key (kbd "C-c p f") 'counsel-git)
 ;;Setup indent in region
 (global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
 ;;hippie expand is dabbrev expand on steroids
@@ -40,7 +40,7 @@
   (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
 ;;Setup key for helm-ag
-(global-set-key (kbd "C-c p s") 'helm-do-ag-project-root)
+;;(global-set-key (kbd "C-c p s") 'helm-do-ag-project-root)
 
 ;;Setup key for backward delete one word
 (global-set-key (kbd "C-w") 'backward-kill-word)
@@ -58,4 +58,41 @@
 (js2r-add-keybindings-with-prefix "C-c C-m")
 
 ;; Setup key for iedit
+
+;; Setup Which Key
+(setq which-key-side-window-location 'right)
+
+;;;; Evil Mode  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setcdr evil-insert-state-map nil)
+(define-key evil-insert-state-map [escape] 'evil-normal-state)
+(evil-leader/set-key
+  "ff" 'find-file
+  "fr" 'recentf-open-files
+  "bb" 'switch-to-buffer
+  "bk" 'kill-buffer
+  "pf" 'counsel-git
+  "ps" 'helm-do-ag-project-root
+  "0"  'select-window-0
+  "1"  'select-window-1
+  "2"  'select-window-2
+  "3"  'select-window-3
+  "w/" 'split-window-right
+  "w-" 'split-window-below
+  ":"  'counsel-M-x
+  "wM" 'delete-other-windows
+  )
+(define-key evil-normal-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
+(define-key evil-visual-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
+
+(add-hook 'occur-mode-hook
+          (lambda ()
+            (evil-add-hjkl-bindings occur-mode-map 'emacs
+              (kbd "/")       'evil-search-forward
+              (kbd "n")       'evil-search-next
+              (kbd "N")       'evil-search-previous
+              (kbd "C-d")     'evil-scroll-down
+              (kbd "C-u")     'evil-scroll-up
+              ))
+	  )
+
 (provide 'init-keybindings)
