@@ -6,7 +6,7 @@
  '(evil-leader/leader "SPC")
  '(package-selected-packages
    (quote
-    (mwe-log-commands which-key evil-surround evil-nerd-commenter window-numbering monokai-theme flycheck exec-path-from-shell nodejs-repl js2-refactor multiple-cursors s js2-mode org-pomodoro helm-ag iedit expand-region reveal-in-osx-finder evil-leader evil popwin highlight-parentheses conllu-mode smartparens dash counsel swiper hungry-delete auto-yasnippet yasnippet-snippets org company)))
+    (mwe-log-commands cask f goto-chg helm-core package-build parsec pkg-info popup shut-up pallet which-key evil-surround evil-nerd-commenter window-numbering monokai-theme flycheck exec-path-from-shell nodejs-repl js2-refactor multiple-cursors s js2-mode org-pomodoro helm-ag iedit expand-region reveal-in-osx-finder evil-leader evil popwin highlight-parentheses conllu-mode smartparens dash counsel swiper hungry-delete auto-yasnippet yasnippet-snippets org company)))
  '(popwin:popup-window-position (quote right))
  '(popwin:popup-window-width 90))
 (custom-set-faces

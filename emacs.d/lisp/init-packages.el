@@ -1,74 +1,76 @@
 ;;;; PACKAGE REPOSITORIES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'cl)
 
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ;("marmalade" . "http://marmalade-repo.org/packages/")
-                          ("melpa" . "http://melpa.milkbox.net/packages/")))
-)
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-(add-to-list 'package-archives '("popkit" . "https://elpa.popkit.org/packages/"))
-;(setq package-enable-at-startup nil)
+;; (when (>= emacs-major-version 24)
+;;   (require 'package)
+;;   (package-initialize)
+;;   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+;; 			 ;("marmalade" . "http://marmalade-repo.org/packages/")
+;;                           ("melpa" . "http://melpa.milkbox.net/packages/")))
+;; )
+;; (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+;; (add-to-list 'package-archives '("popkit" . "https://elpa.popkit.org/packages/"))
+;; ;(setq package-enable-at-startup nil)
 
 
- ;; Add Packages
- (defvar my/packages '(
-                ;; --- Auto-completion ---
-                company
-		yasnippet-snippets
-		auto-yasnippet
-		;; --- Better Editor ---
-                hungry-delete
-                swiper
-                counsel
-                smartparens
-		highlight-parentheses
-		popwin
-		which-key
-		mwe-log-commands
-		;; --- Evil Mode ---
-		evil
-		evil-leader
-		evil-nerd-commenter
-		evil-surround
-		;; --- the finder of the current file ---
-		reveal-in-osx-finder
-		;; --- Batch change files ---
-		expand-region
-		iedit
-		;; --- Search and replace ---
-		helm-ag
-		;; --- Agenda ---
-		org-pomodoro
-                ;; --- Major Mode ---
-		;; --- JS highlight and Linter ---
-                js2-mode
-		;; --- JS refactor ---
-		js2-refactor
-                ;; --- Minor Mode ---
-		;; --- Excute and test ---
-                nodejs-repl
-                exec-path-from-shell
-		reveal-in-osx-finder
-		;; --- Find the syntax error for JS, Python(Dynamic Programming Language). It needs eslint in NPM ---
-		flycheck
-                ;; --- Themes ---
-                monokai-theme
-                ;; solarized-theme
-                ) "Default packages")
- (setq package-selected-packages my/packages)
- (defun my/packages-installed-p ()
-     (loop for pkg in my/packages
-           when (not (package-installed-p pkg)) do (return nil)
-           finally (return t)))
- (unless (my/packages-installed-p)
-     (message "%s" "Refreshing package database...")
-     (package-refresh-contents)
-     (dolist (pkg my/packages)
-       (when (not (package-installed-p pkg))
-         (package-install pkg))))
+;;  ;; Add Packages
+;;  (defvar my/packages '(
+;;                 ;; --- Auto-completion ---
+;;                 company
+;; 		yasnippet-snippets
+;; 		auto-yasnippet
+;; 		;; --- Better Editor ---
+;;                 hungry-delete
+;;                 swiper
+;;                 counsel
+;;                 smartparens
+;; 		highlight-parentheses
+;; 		popwin
+;; 		which-key
+;; 		mwe-log-commands
+;; 		;; --- Evil Mode ---
+;; 		evil
+;; 		evil-leader
+;; 		evil-nerd-commenter
+;; 		evil-surround
+;; 		;; --- the finder of the current file ---
+;; 		reveal-in-osx-finder
+;; 		;; --- Batch change files ---
+;; 		expand-region
+;; 		iedit
+;; 		;; --- Search and replace ---
+;; 		helm-ag
+;; 		;; --- Agenda ---
+;; 		org-pomodoro
+;;                 ;; --- Major Mode ---
+;; 		;; --- JS highlight and Linter ---
+;;                 js2-mode
+;; 		;; --- JS refactor ---
+;; 		js2-refactor
+;;                 ;; --- Minor Mode ---
+;; 		;; --- Excute and test ---
+;;                 nodejs-repl
+;;                 exec-path-from-shell
+;; 		reveal-in-osx-finder
+;; 		;; --- Find the syntax error for JS, Python(Dynamic Programming Language). It needs eslint in NPM ---
+;; 		flycheck
+;;                 ;; --- Themes ---
+;;                 monokai-theme
+;;                 ;; solarized-theme
+;; 		;; --- Pakage Management---
+;; 		;;pallet
+;;                 ) "Default packages")
+;;  (setq package-selected-packages my/packages)
+;;  (defun my/packages-installed-p ()
+;;      (loop for pkg in my/packages
+;;            when (not (package-installed-p pkg)) do (return nil)
+;;            finally (return t)))
+;;  (unless (my/packages-installed-p)
+;;      (message "%s" "Refreshing package database...")
+;;      (package-refresh-contents)
+;;      (dolist (pkg my/packages)
+;;        (when (not (package-installed-p pkg))
+;;          (package-install pkg))))
 
 ;; Find Executable Path on OS X
 ;; this hopefully sets up path and other vars better
@@ -76,7 +78,6 @@
    (exec-path-from-shell-initialize))
 
 ;Install theme
-(add-to-list 'my/packages 'monokai-theme)
 (load-theme 'monokai 1)
 
 ;;Popup window Management
@@ -198,5 +199,10 @@
 
 ;;Setup Which-key
 (which-key-mode 1)
+
+;; solve problem "Variable binding depth exceeds max-specpdl-size", 
+;; default value is 1080 
+(setq max-specpdl-size 34000) 
+(setq max-lisp-eval-depth 20000)
 
 (provide 'init-packages)
