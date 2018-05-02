@@ -89,6 +89,10 @@
 (sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil)
 ;;(sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
 
+;; Do not pair `
+(sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "`" nil :actions nil)
+
+
 ;Delete multiple spaces 
 (require 'hungry-delete)
 (global-hungry-delete-mode)
