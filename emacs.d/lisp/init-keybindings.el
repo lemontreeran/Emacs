@@ -57,6 +57,7 @@
 (add-hook 'js2-mode-hook #'js2-refactor-mode)
 (js2r-add-keybindings-with-prefix "C-c C-m")
 ;;config for anaconda
+(add-hook 'python-mode-hook 'anaconda-mode)
 (add-hook 'python-mode-hook
           (lambda ()
             (set (make-local-variable 'company-backends) '(company-anaconda))))
