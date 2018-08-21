@@ -31,8 +31,9 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     python
      javascript
-     ;; ----------------------------------------------------------------
+     ;; ---*-------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
@@ -50,6 +51,7 @@ values."
      spell-checking
      syntax-checking
      ;; version-control
+     lemontreeran
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -341,12 +343,9 @@ you should place your code here."
   (define-key evil-insert-state-map [escape] 'evil-normal-state)
   (setq ns-use-srgb-colorspace nil)
   (setq powerline-default-separator 'arrow)
+  (add-hook 'prog-mode-hook 'rainbow-mode)
+  
   )
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
-(setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
-(load custom-file 'no-error 'no-message)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
