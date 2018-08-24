@@ -319,7 +319,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 (setq configuration-layer--elpa-archives
       '(("melpa" . "melpa.org/packages/")
         ("org"   . "orgmode.org/elpa/")
-        ("gnu"   . "elpa.gnu.org/packages/"))
+        ("gnu"   . "elpa.gnu.org/packages/")))
 
 ;;(setq-default configuration-layer--elpa-archives
 ;;                '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
