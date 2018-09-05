@@ -44,7 +44,8 @@ values."
      emacs-lisp
      git
      markdown
-     org
+     (org :variables
+          org-enable-reveal-js-support t)
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -52,6 +53,7 @@ values."
      syntax-checking
      ;; version-control
      lemontreeran
+     lemontreeran-org
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
