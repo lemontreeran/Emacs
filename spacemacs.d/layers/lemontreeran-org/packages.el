@@ -66,5 +66,5 @@ Each entry is either:
 (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
 
 (defun lemontreeran-org/post-init-ox-reveal ()
-  (setq org-reveal-root "file:///Users/lemontreeran/.emacs.d/reveal-js"))
+  (setq org-reveal-root "file:///Users/p749227/.emacs.d/reveal-js"))
 ;;; packages.el ends here
