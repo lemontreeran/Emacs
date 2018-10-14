@@ -30,7 +30,14 @@
 ;;; Code:
 
 (defconst lemontreeran-org-packages
-  '()
+  '(
+    (org :location built-in)
+    org-mac-link
+    org-pomodoro
+    deft
+    ox-reveal
+    (org-opml :location local)
+    )
   "The list of Lisp packages required by the lemontreeran-org layer.
 
 Each entry is either:
@@ -46,8 +53,7 @@ Each entry is either:
     - :excluded (t or nil): Prevent the package from being loaded
       if value is non-nil
 
-    - :location: Specify a custom installation location.
-      The following values are legal:
+    - :location: Specify a custom installation location. The following values are legal:
 
       - The symbol `elpa' (default) means PACKAGE will be
         installed using the Emacs package manager.
@@ -66,5 +72,9 @@ Each entry is either:
 (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
 
 (defun lemontreeran-org/post-init-ox-reveal ()
-  (setq org-reveal-root "file:///Users/p749227/.emacs.d/reveal-js"))
+  (setq org-reveal-root "file:///Users/p749227/bin/GIT/GITHUB/Emacs/emacs.d/reveal.js")
+  (with-eval-after-load 'org (progn
+                               (load-library "ox-reveal")
+                               ))
+  )
 ;;; packages.el ends here
