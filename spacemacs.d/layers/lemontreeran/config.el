@@ -17,5 +17,6 @@
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-(setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
-(load custom-file 'no-error 'no-message)
+
+;; (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
+;; (load custom-file 'no-error 'no-message)
