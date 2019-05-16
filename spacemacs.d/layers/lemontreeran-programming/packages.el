@@ -32,6 +32,7 @@
         (emacs-lisp :location built-in)
         ;; clojure-mode
         company
+        feature-mode
         ;; dumb-jump
         ;; graphviz-dot-mode
         ;; cider
@@ -347,8 +348,13 @@
     (when (configuration-layer/package-usedp 'company)
       (with-eval-after-load 'company
         ;; (spacemacs|add-company-hook python-mode shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode js2-mode js-mode)    
-        ;; (spacemacs|add-company-backends
-        ;;  :modes shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode js2-mode js-mode)
+        (spacemacs|add-company-backends
+         :modes shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode js2-mode js-mode)
         ))
     ))
+
+(defun lemontreeran-programming/init-feature-mode ()
+  "Initialize feature mode for Behat"
+  (use-package feature-mode
+    :mode (("\\.feature\\'" . feature-mode))))
 

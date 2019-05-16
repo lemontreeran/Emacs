@@ -111,5 +111,6 @@ Each entry is either:
 ;;   (spacemacs/add-company-solidity-hook 'solidity-mode))
 
 (defun spacemacs-solidity/post-init-flycheck ()
-  (spacemacs/add-flycheck-hook 'solidity-mode))
+  ;; (spacemacs/add-flycheck-hook 'solidity-mode))
+  (spacemacs/enable-flycheck 'solidity-mode))
 ;;; packages.el ends here

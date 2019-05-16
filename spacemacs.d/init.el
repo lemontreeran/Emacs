@@ -208,7 +208,7 @@ values."
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
    ;; (default 'cache)
-   dotspacemacs-auto-save-file-location 'cache
+   dotspacemacs-auto-save-file-location 'original
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
    ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
@@ -321,30 +321,33 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-;;(setq configuration-layer--elpa-archives
-;;      '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
-;;        ("org-cn"   . "http://elpa.zilongshanren.com/org/")
-;;        ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))  
+  ;;(setq configuration-layer--elpa-archives
+  ;;      '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
+  ;;        ("org-cn"   . "http://elpa.zilongshanren.com/org/")
+  ;;        ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))  
   
-(setq configuration-layer--elpa-archives
-      '(("melpa" . "melpa.org/packages/")
-        ("org"   . "orgmode.org/elpa/")
-        ("gnu"   . "elpa.gnu.org/packages/")))
+  (setq configuration-layer--elpa-archives
+        '(("melpa" . "melpa.org/packages/")
+          ("org"   . "orgmode.org/elpa/")
+          ("gnu"   . "elpa.gnu.org/packages/")))
 
-;;(setq-default configuration-layer--elpa-archives
-;;                '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-;;                  ("org-cn" . "http://elpa.emacs-china.org/org/")
-;;                  ("gnu-cn" . "http://elpa.emacs-china.org/gnu/")
-;;                  ("marmalade-cn" . "http://elpa.emacs-china.org/marmalade/")
-;;                  ("user42-cn" . "http://elpa.emacs-china.org/user42/")
-;;                  ("melpa-stable-cn" . "http://elpa.emacs-china.org/melpa-stable/")
-;;                  ("sunrise-commander-cn" . "http://elpa.emacs-china.org/sunrise-commander/")
-;;                  )
-;;                )
-;;  (setq-default package-archives configuration-layer--elpa-archives)
+  ;;(setq-default configuration-layer--elpa-archives
+  ;;                '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+  ;;                  ("org-cn" . "http://elpa.emacs-china.org/org/")
+  ;;                  ("gnu-cn" . "http://elpa.emacs-china.org/gnu/")
+  ;;                  ("marmalade-cn" . "http://elpa.emacs-china.org/marmalade/")
+  ;;                  ("user42-cn" . "http://elpa.emacs-china.org/user42/")
+  ;;                  ("melpa-stable-cn" . "http://elpa.emacs-china.org/melpa-stable/")
+  ;;                  ("sunrise-commander-cn" . "http://elpa.emacs-china.org/sunrise-commander/")
+  ;;                  )
+  ;;                )
+  ;;  (setq-default package-archives configuration-layer--elpa-archives)
 
-(setq tramp-ssh-controlmaster-options
-      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+  (setq tramp-ssh-controlmaster-options
+        "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+
+  ;; (setq anaconda-mode-localhost-address "localhost")
+
   )
 
 (defun dotspacemacs/user-config ()

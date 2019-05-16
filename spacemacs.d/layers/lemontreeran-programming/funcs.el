@@ -28,6 +28,10 @@
       (setq yas-wrap-around-region t)))
   (yas-minor-mode 1))
 
+(defun conditionally-enable-lispy ()
+  (when (eq this-command 'eval-expression)
+    (lispy-mode 1)))
+
 (defun my-js2-mode-hook ()
   (progn
     (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc-snippet)
