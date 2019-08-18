@@ -17,10 +17,11 @@
         caps-lock
         flycheck
         nodejs-repl
-        ;; (spacemacs-solidity :location local)
+        (spacemacs-solidity :location local)
         js2-mode
         js2-refactor
         json-mode
+        yaml-mode
         yasnippet
         web-mode
         ;; js-doc
@@ -39,6 +40,8 @@
         ;; editorconfig
         ;; robe
         ;; exec-path-from-shell
+        terraform-mode
+        company-terraform
         ))
 
 (defun lemontreeran-programming/post-init-css-mode ()
@@ -329,7 +332,8 @@
 (defun lemontreeran-programming/post-init-python ()
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   ;; if you use pyton3, then you could comment the following line
-  (setq python-shell-interpreter "python"))
+  ;; (setq python-shell-interpreter "python")
+  )
 
 (defun lemontreeran-programming/post-init-emacs-lisp ()
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode))
@@ -349,7 +353,7 @@
       (with-eval-after-load 'company
         ;; (spacemacs|add-company-hook python-mode shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode js2-mode js-mode)    
         (spacemacs|add-company-backends
-         :modes shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode js2-mode js-mode)
+          :modes shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode js2-mode js-mode terraform-mode)
         ))
     ))
 
@@ -358,3 +362,20 @@
   (use-package feature-mode
     :mode (("\\.feature\\'" . feature-mode))))
 
+(defun lemontreeran-programming/init-terraform-mode ()
+  (use-package terraform-mode
+    :defer t
+    :init
+    ))
+
+(defun lemontreeran-programming/post-init-terraform-mode ()
+  )
+
+(defun lemontreeran-programming/init-company-terraform ()
+  (use-package company-terraform)
+  (company-terraform-init)
+  ; broken: https://GitHub.com/rafalcieslak/emacs-company-terraform/issues/3
+  ; (add-hook 'terraform-mode-hook (lambda()
+  ;                                  (company-mode)
+  ;                                  ))
+  )

@@ -31,7 +31,7 @@
   '((solidity-mode :location (recipe
                                :fetcher github
                                :repo "lemontreeran/emacs-solidity"))
-    ;; company
+    company
     company-solidity
     flycheck)
   "The list of Lisp packages required by the spacemacs-solidity layer.
@@ -68,6 +68,19 @@ Each entry is either:
 ;;     )
 ;; ;;激活自动补全))
 
+(defun spacemacs-solidity/post-init-company ()
+  (progn
+    (setq company-minimum-prefix-length 1
+          company-idle-delay 0.08)
+
+    (when (configuration-layer/package-usedp 'company)
+      (with-eval-after-load 'company
+        ;; (spacemacs|add-company-hook python-mode shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode js2-mode js-mode)    
+        (spacemacs|add-company-backends
+          :modes solidity-mode)
+        ))
+    ))
+
 (defun spacemacs-solidity/init-solidity-mode ()
   (use-package solidity-mode
     ;; :defer t
@@ -84,7 +97,7 @@ Each entry is either:
       )
     :config
     (spacemacs/set-leader-keys-for-major-mode 'solidity-mode
-      "g" #'solidity-estimate-gas-at-point)
+      "g" 'solidity-estimate-gas-at-point)
     (define-key solidity-mode-map (kbd "C-c C-g") 'solidity-estimate-gas-at-point)))
 
 

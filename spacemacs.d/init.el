@@ -30,7 +30,7 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(rust
      typescript
      csv
      ansible
@@ -283,7 +283,7 @@ values."
    dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'evil
+   dotspacemacs-folding-method 'origami
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -363,6 +363,7 @@ you should place your code here."
   (setq powerline-default-separator 'arrow)
   (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
   (add-to-list 'exec-path "/Users/p749227/.nvm/versions/node/v10.15.0/bin")
+  (define-coding-system-alias 'UTF-8 'utf-8)
   ;; (add-hook 'prog-mode-hook 'rainbow-mode)
   
   )
