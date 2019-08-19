@@ -32,6 +32,8 @@
         (python :location built-in)
         (emacs-lisp :location built-in)
         ;; clojure-mode
+        racer
+        rust-mode
         company
         feature-mode
         ;; dumb-jump
@@ -43,6 +45,9 @@
         terraform-mode
         company-terraform
         ))
+
+(defun lemontreeran-programming/set-word-boundaries ()
+  (modify-syntax-entry ?_ "w"))
 
 (defun lemontreeran-programming/post-init-css-mode ()
   (progn
@@ -198,27 +203,26 @@
 
 (defun lemontreeran-programming/post-init-js2-refactor ()
   (progn
-    
-(defun js2r-toggle-object-property-access-style ()
-  "Toggle js object property access style."
-  (interactive)
-  (js2r--guard)
-  (js2r--wait-for-parse
-   (save-excursion
-     (let ((node (js2-node-at-point)))
-       (if (js2-string-node-p node)
-           (let* ((start (js2-node-abs-pos node))
-                  (end (+ start (js2-node-len node))))
-             (when (memq (char-before start) '(?\[))
-               (save-excursion
-                 (goto-char (-  end 1)) (delete-char 2)
-                 (goto-char (+ start 1)) (delete-char -2) (insert "."))))
-         (let* ((start (js2-node-abs-pos node))
-                (end (+ start (js2-node-len node))))
-           (when (memq (char-before start) '(?.))
-             (save-excursion
-               (goto-char end) (insert "\']")
-               (goto-char start) (delete-char -1) (insert "[\'")))))))))
+    (defun js2r-toggle-object-property-access-style ()
+      "Toggle js object property access style."
+      (interactive)
+      (js2r--guard)
+      (js2r--wait-for-parse
+      (save-excursion
+        (let ((node (js2-node-at-point)))
+          (if (js2-string-node-p node)
+              (let* ((start (js2-node-abs-pos node))
+                      (end (+ start (js2-node-len node))))
+                (when (memq (char-before start) '(?\[))
+                  (save-excursion
+                    (goto-char (-  end 1)) (delete-char 2)
+                    (goto-char (+ start 1)) (delete-char -2) (insert "."))))
+            (let* ((start (js2-node-abs-pos node))
+                    (end (+ start (js2-node-len node))))
+              (when (memq (char-before start) '(?.))
+                (save-excursion
+                  (goto-char end) (insert "\']")
+                  (goto-char start) (delete-char -1) (insert "[\'")))))))))
 
     (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       "r>" 'js2r-forward-slurp
@@ -330,9 +334,28 @@
   )
 
 (defun lemontreeran-programming/post-init-python ()
-  (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (add-hook 'python-mode-hook 'lemontreeran-programming/set-word-boundaries)
   ;; if you use pyton3, then you could comment the following line
   ;; (setq python-shell-interpreter "python")
+  )
+
+(defun lemontreeran-programming/post-init-racer ()
+  (use-package racer
+    :ensure t
+    :init (progn
+            (add-hook 'rust-mode-hook #'racer-mode)
+            (add-hook 'racer-mode-hook #'eldoc-mode)
+            (add-hook 'racer-mode-hook #'company-mode)))
+  )
+
+(defun lemontreeran-programming/post-init-rust-mode ()
+  (setq rust-indent-offset 2)
+  (add-hook 'rust-mode-hook 'lemontreeran-programming/set-word-boundaries)
+  (use-package rust-mode
+    :ensure t
+    :init (progn
+            (add-hook 'rust-mode-hook 'cargo-minor-mode)
+            (add-hook 'toml-mode-hook 'cargo-minor-mode)))
   )
 
 (defun lemontreeran-programming/post-init-emacs-lisp ()
@@ -353,7 +376,7 @@
       (with-eval-after-load 'company
         ;; (spacemacs|add-company-hook python-mode shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode js2-mode js-mode)    
         (spacemacs|add-company-backends
-          :modes shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode js2-mode js-mode terraform-mode)
+          :modes shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode js2-mode js-mode terraform-mode rust-mode)
         ))
     ))
 
